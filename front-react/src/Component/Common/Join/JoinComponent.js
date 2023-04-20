@@ -99,6 +99,29 @@ class JoinComponent extends Component {
             />
           </div>
 
+           <div className="text_area">
+            <input
+              type="text"
+              id="birth"
+              name="birth"
+              value={this.state.email}
+              className="text_input"
+              placeholder="생년월일을 입력하세요"
+              onChange={this.onChange}
+            />
+          </div>
+
+          <div className="text_area">
+            <input
+              type="birth"
+              id="birth"
+              name="birth"
+              value={this.state.email}
+              className="text_input"
+              placeholder="아아아 를 입력하세요"
+              onChange={this.onChange}
+            />
+          </div>
           <button onClick={this.signOn} className="btn">
             Sign On
           </button>
