@@ -8,26 +8,33 @@ import AddMemberComponent from "../Member/AddMemberComponent";
 import EditMemberComponent from "../Member/EditMemberComponent";
 
 import WorkInfo from "../workInfo/WorkInfo";
-import Mail from "../Mail/Mail";
 
 //여길 먼저 탄다
 
-const AppRouter = ({ activePage }) => {
+const AppRouter = () => {
   return (
     <div>
       <BrowserRouter>
-        <Route path="/test" exact={true} component={WorkInfo} />
-        <Route path="/addMember" exact={true} component={AddMemberComponent} />
-        <Route
-          path="/editMember"
-          exact={true}
-          component={EditMemberComponent}
-        />
-        <Route path="/mail" exact={true} component={Mail} />
+        <div style={style}>
+          <Route path="/test" exact={true} component={WorkInfo} />
+          <Route
+            path="/addmember"
+            exact={true}
+            component={AddMemberComponent}
+          />
+          <Route
+            path="/editMember"
+            exact={true}
+            component={EditMemberComponent}
+          />
+        </div>
       </BrowserRouter>
-      {activePage}
     </div>
   );
+};
+const style = {
+  color: "blue",
+  margin: "10",
 };
 
 export default AppRouter;

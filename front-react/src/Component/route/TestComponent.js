@@ -9,24 +9,24 @@ import JoinComponent from "./../Common/Join/JoinComponent";
 
 import App2 from "../../App2";
 
-import VacationRequest from "../Vacation/VacationRequest";
-
 //여길 먼저 탄다
 
 const TestRouter = () => {
   return (
     <div>
       <BrowserRouter>
-        <div>
-          <Route path="/" exact={true} component={LoginComponent} />
+        <div style={style}>
           <Route path="/join" exact={true} component={JoinComponent} />
+          <Route path="/" exact={true} component={LoginComponent} />
           <Route path="/test" exact={true} component={App2} />
-          <Route path="/vacation" exact={true} component={VacationRequest} />
-          <Route path="/mail" exact={true} component={App2} />
         </div>
       </BrowserRouter>
     </div>
   );
+};
+const style = {
+  color: "blue",
+  margin: "10",
 };
 
 export default TestRouter;

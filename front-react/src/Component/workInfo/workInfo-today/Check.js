@@ -37,7 +37,13 @@ export default function Check() {
       <Box className="workInfoBox_" height="200px">
         <Clock />
 
-        <Box border="1px solid #f2f2f2" justifyContent="center" width={210}>
+        <Box
+          border="1px solid #f2f2f2"
+          justifyContent="center"
+          width={210}
+          mr={12}
+          ml={12}
+        >
           <Grid container spacing={1}>
             {items.map((item) => (
               <Grid item xs={4} key={item.text}>
