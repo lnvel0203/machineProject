@@ -3,140 +3,127 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import Modal from "react-modal";
-import Box from "@mui/material/Box";
 
-Modal.setAppElement("#root");
 
-const customStyles = {
-  content: {
-    width: "100%",
-    height: "100%",
-    margin: "0",
-    borderRadius: "10px",
-    padding: "20px",
-    backgroundColor: "#f2f2f2",
-  },
-};
+function Calendar() {
+  const [events, setEvents] = useState([
+    {
+      title: "the Title",
+      date: "2023-04-10",
+      description: "A gathering of friends and family",
+      color: "green", // add color to the event
+    },
+  ]);
 
-function CalenderTest() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [eventTitle, setEventTitle] = useState("");
-  const [eventDetail, setEventDetail] = useState("");
-  const [eventStart, setEventStart] = useState(null);
-  const [eventEnd, setEventEnd] = useState(null);
-  const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
-
-  const handleDateSelect = (arg) => {
-    setEventStart(arg.start);
-    setEventEnd(arg.end);
-    const mousePosX = arg.jsEvent.clientX;
-    const mousePosY = arg.jsEvent.clientY;
-    setModalPosition({ x: mousePosX, y: mousePosY });
-    setModalIsOpen(true);
+  const handleDateSelect = (selectInfo) => {
+    const formHtml = `
+      <form id="newEventForm">
+        <label for="title">일정 추가:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="description">일정 내용을 입력하세요.:</label><br>
+        <input type="text" id="description" name="description"><br>
+        <label for="color">일정 색상을 선택하세요.:</label><br>
+        <input type="checkbox" id="green" name="color" value="green">
+        <label for="green">Green</label><br>
+        <input type="checkbox" id="blue" name="color" value="blue">
+        <label for="blue">Blue</label><br>
+        <input type="checkbox" id="red" name="color" value="red">
+        <label for="red">Red</label><br>
+        <input type="checkbox" id="yellow" name="color" value="yellow">
+        <label for="yellow">Yellow</label><br><br>
+        <input type="submit" value="등록">
+        <button id="cancelButton">취소</button>
+      </form>
+    `;
+  
+    const newWindow = window.open("", "Add Event", "width=500,height=400");
+    newWindow.document.body.innerHTML = formHtml;
+  
+    newWindow.document.getElementById("newEventForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+  
+      const title = newWindow.document.getElementById("title").value;
+      const description = newWindow.document.getElementById("description").value;
+      const selectedColors = newWindow.document.querySelectorAll('input[name="color"]:checked');
+      const colors = Array.from(selectedColors).map((checkbox) => checkbox.value);
+  
+      if (title) {
+        setEvents([
+          ...events,
+          {
+            title,
+            description,
+            start: selectInfo.startStr,
+            end: selectInfo.endStr,
+            color: colors.length > 0 ? colors[0] : 'green',
+          },
+        ]);
+  
+        newWindow.close();
+      }
+    });
+  
+    newWindow.document.getElementById("cancelButton").addEventListener("click", (event) => {
+      event.preventDefault();
+      newWindow.close();
+    });
   };
+  
+  
+  const handleEventClick = (clickInfo) => {
+    const eventEl = clickInfo.el;
 
-  const handleModalClose = () => {
-    setEventTitle("");
-    setEventDetail("");
-    setEventStart(null);
-    setEventEnd(null);
-    setModalIsOpen(false);
-  };
-
-  const handleModalSubmit = () => {
-    const calendarApi = calendarRef.current.getApi();
-
-    calendarApi.addEvent({
-      title: eventTitle,
-      detail: eventDetail,
-      start: eventStart,
-      end: eventEnd,
+    eventEl.querySelectorAll(".delete-button").forEach((btn) => {
+      btn.remove();
     });
 
-    handleModalClose();
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = "삭제";
+    deleteBtn.classList.add("delete-button");
+    deleteBtn.onclick = () => {
+      if (window.confirm(`삭제 합니다.'${clickInfo.event.title}'?`))
+      {
+        clickInfo.event.remove();
+      }
+    };
+    eventEl.appendChild(deleteBtn);
   };
 
-  const handleEventTitleChange = (event) => {
-    setEventTitle(event.target.value);
+  const eventContent = (eventInfo) => {
+    return (
+      <>
+        <b>{eventInfo.timeText}</b>
+        <p>
+          <h3>{eventInfo.event.title}</h3>
+        </p>
+        <p>{eventInfo.event.extendedProps.description}</p>
+      </>
+    );
   };
-  const handleEventDetailChange = (event) => {
-    setEventDetail(event.target.value);
-  };
-
-  const calendarRef = React.createRef();
 
   return (
-    <Box display={"flex"}>
-      <Box width={90}>.</Box>
-      <Box width={"100%"} mr={2} mb={2}>
-        <FullCalendar
-          ref={calendarRef}
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView="dayGridMonth"
-          headerToolbar={{
-            start: "today prev,next",
-            center: "title",
-            end: "dayGridMonth,timeGridWeek,timeGridDay",
-          }}
-          selectable={true}
-          select={handleDateSelect}
-          events={[
-            {
-              title: "eventh",
-              date: "2023-04-10",
-              description: "A gathering of friends and family",
-            },
-          ]}
-        />
-
-        {modalIsOpen && (
-          <div
-            style={{
-              position: "absolute",
-              top: modalPosition.y,
-              left: modalPosition.x,
-              zIndex: 999,
-              backgroundColor: "#f2f2f2",
-              borderRadius: "10px",
-              padding: "20px",
-            }}
-          >
-            <h2>일정추가</h2>
-            <p>
-              시작: {eventStart?.toLocaleString()} <br />
-              끝: {eventEnd?.toLocaleString()}
-            </p>
-            <form>
-              <div>
-                <label>
-                  제목:
-                  <input
-                    type="text"
-                    value={eventTitle}
-                    onChange={handleEventTitleChange}
-                  />
-                </label>
-              </div>
-              <div>
-                <label>
-                  내용:
-                  <input
-                    type="text"
-                    value={eventDetail}
-                    onChange={handleEventDetailChange}
-                  />
-                </label>
-              </div>
-            </form>
-            <br />
-            <button onClick={handleModalSubmit}>저장</button>
-            <button onClick={handleModalClose}>취소</button>
-          </div>
-        )}
-      </Box>
-    </Box>
+    <div>
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        initialView="dayGridMonth"
+        headerToolbar={{
+          start: "today prev,next",
+          center: "title",
+          end: "dayGridMonth,timeGridWeek,timeGridDay",
+        }}
+        events={events}
+        selectable={true}
+        selectMirror={true}
+        dayMaxEvents={true}
+        eventClick={handleEventClick}
+        eventContent={eventContent}
+        select={(info) => handleDateSelect(info)}
+        eventRemove={(info) => {
+          setEvents(events.filter((event) => event !== info.event));
+        }}
+      />
+    </div>
   );
 }
 
-export default CalenderTest;
+export default Calendar;

@@ -22,10 +22,10 @@ class LoginComponent extends Component {
   };
 
   login = (e) => {
-   
+    this.props.history.push("/main");
 
     e.preventDefault();
-    this.props.history.push("/main");
+   
     let member = {
       userName: this.state.userName,
       password: this.state.password,
@@ -36,7 +36,7 @@ class LoginComponent extends Component {
           message: member.id + "님이 성공적으로 등록되었습니다.",
         });
         console.log(this.state.message);
-       
+     
       })
       .catch((err) => {
       
