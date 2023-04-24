@@ -1,0 +1,35 @@
+
+.mail {
+  color: black;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin-left: 3.6%;
+  text-align: center;
+  background: #ffffff;
+  width: 200px;
+  height: 860px;
+  margin-top: -2.2%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.mail_btn{
+  margin-top: -25px;
+  width: 80px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: #B58DED;
+  border: none;
+  font-family: 'Montserrat';
+  font-size: 20px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(181, 141, 237, 0.7), 0 6px 20px 0 rgba(181, 141, 237, 0.9);
+  cursor: pointer;
+}
+
+.mail_list{
+
+margin-bottom: 500;
+
+}

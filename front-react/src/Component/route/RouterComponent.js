@@ -4,37 +4,41 @@ import React from "react";
 // npm install react-router@5 react-router-dom@5
 
 import { BrowserRouter, Route } from "react-router-dom";
-import AddMemberComponent from "../Member/AddMemberComponent";
-import EditMemberComponent from "../Member/EditMemberComponent";
+import LoginComponent from "../Common/Login/LoginComponent";
+import JoinComponent from "../Common/Join/JoinComponent";
+import Main from "../Layout/Main";
+import Document from "../Layout/Document";
+import Salary from "../Layout/Salary";
+import Calender from "../Layout/Calender";
+import Mail from "../Layout/Mail";
+import Content from "../Messenger/Content";
+// 여기 부터 붙이면 됨 규격 꼭 지킬것.
+// 예시 import ~ from "../Layout/~";
 
-import WorkInfo from "../workInfo/WorkInfo";
-
-//여길 먼저 탄다
 
 const AppRouter = () => {
   return (
+
     <div>
+
       <BrowserRouter>
-        <div style={style}>
-          <Route path="/test" exact={true} component={WorkInfo} />
-          <Route
-            path="/addmember"
-            exact={true}
-            component={AddMemberComponent}
-          />
-          <Route
-            path="/editMember"
-            exact={true}
-            component={EditMemberComponent}
-          />
+        <div>
+          <Route path="/" exact={true} component={LoginComponent} />
+          <Route path="/join" exact={true} component={JoinComponent} />
+          <Route path="/main" exact={true} component={Main} />
+          <Route path="/document" exact={true} component={Document} />
+          <Route path="/salary" exact={true} component={Salary} />
+          <Route path="/calender" exact={true} component={Calender} />
+          <Route path="/mail" exact={true} component={Mail} />
+          {/* 여기부터 붙이면 됨 규격 꼭 지킬것 */}
+          {/* 예시  <Route path="/~" exact={true} component={~} />*/}
+          <Route path="/message" exact={true} component={Content} />
+
+
         </div>
       </BrowserRouter>
     </div>
   );
-};
-const style = {
-  color: "blue",
-  margin: "10",
 };
 
 export default AppRouter;

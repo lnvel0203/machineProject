@@ -36,31 +36,26 @@ export default function Check() {
       </Box>
       <Box className="workInfoBox_" height="200px">
         <Clock />
-
-        <Box
-          border="1px solid #f2f2f2"
-          justifyContent="center"
-          width={210}
-          mr={12}
-          ml={12}
-        >
-          <Grid container spacing={1}>
-            {items.map((item) => (
-              <Grid item xs={4} key={item.text}>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  style={{
-                    border: "1px solid #263238",
-                    color: "#263238",
-                    boxShadow: "none",
-                  }}
-                >
-                  {item.text}
-                </Button>
-              </Grid>
-            ))}
-          </Grid>
+        <Box display="flex" justifyContent="center">
+          <Box border="1px solid #f2f2f2" justifyContent="center" width={210}>
+            <Grid container spacing={1}>
+              {items.map((item) => (
+                <Grid item xs={4} key={item.text}>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    style={{
+                      border: "1px solid #263238",
+                      color: "#263238",
+                      boxShadow: "none",
+                    }}
+                  >
+                    {item.text}
+                  </Button>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
         </Box>
       </Box>
     </div>

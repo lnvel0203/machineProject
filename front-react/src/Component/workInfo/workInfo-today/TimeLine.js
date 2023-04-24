@@ -7,6 +7,8 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 
+const items = [{ status: "출근" }, { status: "외근" }, { status: "업무" }];
+
 export default function WorkTimeline() {
   return (
     <Timeline
@@ -17,19 +19,17 @@ export default function WorkTimeline() {
         },
       }}
     >
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>출근</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-        </TimelineSeparator>
-        <TimelineContent>외근</TimelineContent>
-      </TimelineItem>
+      {items.map((item, index) => (
+        <TimelineItem key={item.title}>
+          <TimelineSeparator>
+            <TimelineDot
+              color={index === items.length - 1 ? "secondary" : "primary"}
+            />
+            {index !== items.length - 1 && <TimelineConnector />}
+          </TimelineSeparator>
+          <TimelineContent>{item.status}</TimelineContent>
+        </TimelineItem>
+      ))}
     </Timeline>
   );
 }

@@ -31,10 +31,11 @@ import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import ChatIcon from "@mui/icons-material/Chat";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
 // 컴포넌트
-import AppRouter from "../route/RouterComponent";
-import { SsidChartOutlined } from "@mui/icons-material";
+
+// import { SsidChartOutlined } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -103,39 +104,30 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-
 //임시 관리자 권한을 가진 인원일경우
 //이 경로를 타게됨.
 //session == 를 숫자를 넣으면 아이콘이 보임.
 //if(session == "2"){   //인사관리 아이콘 보기.
-const session = "";
-let path ="";
-
-if(session === "1"){
-  path= "";
-}else if(session ==="2"){
-  path={ text: "인사관리", icon: <AssignmentIndIcon />, link: "#" };
-}else if(session ==="3"){
-  path={ text: "경영관리", icon: <FolderIcon />, link: "#" };
-}
+const session = "1";
 
 const items = [
-  // 추가&변경하여 본인담당 업무
-  { text: "홈", icon: <HomeIcon />, link: "/test" },   
+  { text: "홈", icon: <HomeIcon />, link: "/main" },
   { text: "메일", icon: <EmailIcon />, link: "/mail" }, //부석현 -메일
-  { text: "전자결제", icon: <DriveFileRenameOutlineIcon />, link: "/" }, // 조우주 - 전자결제
-  { text: "주소록", icon: <AccountTreeIcon />, link: "/" },  // 김희수 - 주소록
-  { text: "내 정보", icon: <AssignmentIndIcon />, link: "/" },  // 김재인 - 내 정보
-  { text: "캘린더", icon: <CalendarMonthIcon />, link: "/" },  // 김성훈 - 캘린더
-  { text: "자료실", icon: <FolderIcon />, link: "/" },  
-  { text: "게시판", icon: <FormatListBulletedIcon />, link: "/" }, 
-  { text: "메신저", icon: <ChatIcon />, link: "/message" },  // 부석현 - 전자결제
-  { text: "회의실 예약", icon: <AccessTimeIcon />, link: "/" },  
-  
-  // 관리자 추가 작성.
-   path,
+  { text: "전자결제",icon: <DriveFileRenameOutlineIcon />, link: "/document",}, // 조우주 - 전자결제
+  { text: "주소록", icon: <AccountTreeIcon />, link: "#" }, // 김희수 - 주소록
+  { text: "내 정보", icon: <AssignmentIndIcon />, link: "#" }, // 김재인 - 내 정보
+  { text: "캘린더", icon: <CalendarMonthIcon />, link: "/calender" }, // 김성훈 - 캘린더
+  { text: "자료실", icon: <FolderIcon />, link: "#" },
+  { text: "게시판", icon: <FormatListBulletedIcon />, link: "#" },
+  { text: "회의실 예약", icon: <AccessTimeIcon />, link: "#" },
 
-];
+  // 추가 & 변경하여 본인담당 업무
+  session === "1"
+    ? { text: "인사관리", icon: <ManageAccountsIcon />, link: "#" } // 세션 1
+    : session === "2"
+    ? { text: "경영관리", icon: <ManageAccountsIcon />, link: "/salary" } // 세션 2
+    : null,
+].filter((item) => item !== null);
 
 export default function Global() {
   const theme = useTheme();
@@ -155,12 +147,12 @@ export default function Global() {
   // 링크 이동 메서드
   const handleItemClick = (link) => {
     history.push(link);
-    window.location.reload();
   };
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
+
       <AppBar
         position="fixed"
         color=""
@@ -246,7 +238,6 @@ export default function Global() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <AppRouter />
       </Box>
     </Box>
   );

@@ -14,7 +14,7 @@ class ApiService {
 
     //insert-   post == insert
     login(member) {
-    return axios.post(MEMBER_API_BASE_URL+ "/login", member);
+    return axios.post(MEMBER_API_BASE_URL+ "/loginProc", member);
     }
     //받는다.
     // 컨트롤 axios = 스프링부트와 연결한다.
@@ -43,6 +43,7 @@ class ApiService {
         //여기까지가 유알엘이다---------------| 여긴 매개변수이다
         return axios.delete(MEMBER_API_BASE_URL + "/" +memberID);
     }
+
 
 }
 

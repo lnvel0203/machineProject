@@ -10,6 +10,11 @@ const day = today.getDate();
 const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 const dayOfWeek = daysOfWeek[today.getDay()];
 
+const handleClick = () => {
+  const features = "width=900,height=900,top=100,left=100";
+  window.open("/document", "_blank", features);
+};
+
 export default function Plan() {
   return (
     <div>
@@ -30,7 +35,7 @@ export default function Plan() {
             height: 110,
             backgroundColor: "#ffffff",
             borderRadius: "10px",
-            border: "1.5px solid #263238",
+            border: "1px solid #263238",
             textAlign: "center",
           }}
         >
@@ -49,6 +54,7 @@ export default function Plan() {
           <Typography variant="caption">여긴 뭐 쓰는곳 일까</Typography>
           <Box mt={1}>
             <Button
+              onClick={handleClick}
               variant="outlined"
               size="small"
               style={{
@@ -60,7 +66,9 @@ export default function Plan() {
             >
               연장근무신청
             </Button>
+
             <Button
+              onClick={handleClick}
               variant="outlined"
               size="small"
               style={{

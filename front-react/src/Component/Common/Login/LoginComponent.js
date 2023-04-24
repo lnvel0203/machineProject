@@ -22,10 +22,10 @@ class LoginComponent extends Component {
   };
 
   login = (e) => {
-
-    this.props.history.push("/test");
-    e.preventDefault();
    
+
+    e.preventDefault();
+    this.props.history.push("/main");
     let member = {
       userName: this.state.userName,
       password: this.state.password,
@@ -39,6 +39,7 @@ class LoginComponent extends Component {
        
       })
       .catch((err) => {
+      
         console.log("login() 에러!!", err);
      
       });
