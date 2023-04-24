@@ -6,7 +6,7 @@
 // http://localhost:8081/members
 import axios from 'axios';  //npm install -f axios@^1.3.5
 //스프링 부트의 포트번호와 같아야한다
-const MEMBER_API_BASE_URL = 'http://localhost:80/members';
+const MEMBER_API_BASE_URL = 'http://localhost:8081/members';
 //const MEMBER_API_BASE_URL = 'http://localhost:8081/members';
 class ApiService {
 
@@ -14,7 +14,7 @@ class ApiService {
 
     //insert-   post == insert
     login(member) {
-    return axios.post(MEMBER_API_BASE_URL+ "/login", member);
+    return axios.post(MEMBER_API_BASE_URL+ "/loginProc", member);
     }
     //받는다.
     // 컨트롤 axios = 스프링부트와 연결한다.

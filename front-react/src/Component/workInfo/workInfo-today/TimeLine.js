@@ -20,7 +20,7 @@ export default function WorkTimeline() {
       }}
     >
       {items.map((item, index) => (
-        <TimelineItem key={item.status}>
+        <TimelineItem key={item.title}>
           <TimelineSeparator>
             <TimelineDot
               color={index === items.length - 1 ? "secondary" : "primary"}

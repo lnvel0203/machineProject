@@ -112,19 +112,18 @@ const session = "1";
 
 const items = [
   { text: "홈", icon: <HomeIcon />, link: "/main" },
-  { text: "메일", icon: <EmailIcon />, link: "#" }, //부석현 -메일
+  { text: "메일", icon: <EmailIcon />, link: "/mail" }, //부석현 -메일
   { text: "전자결제",icon: <DriveFileRenameOutlineIcon />, link: "/document",}, // 조우주 - 전자결제
   { text: "주소록", icon: <AccountTreeIcon />, link: "#" }, // 김희수 - 주소록
   { text: "내 정보", icon: <AssignmentIndIcon />, link: "#" }, // 김재인 - 내 정보
   { text: "캘린더", icon: <CalendarMonthIcon />, link: "/calender" }, // 김성훈 - 캘린더
   { text: "자료실", icon: <FolderIcon />, link: "#" },
   { text: "게시판", icon: <FormatListBulletedIcon />, link: "#" },
-  { text: "메신저", icon: <ChatIcon />, link: "#" }, // 부석현 - 메신저
   { text: "회의실 예약", icon: <AccessTimeIcon />, link: "#" },
 
   // 추가 & 변경하여 본인담당 업무
   session === "1"
-    ? { text: "인사관리", icon: <ManageAccountsIcon />, link: "/employee" } // 세션 1
+    ? { text: "인사관리", icon: <ManageAccountsIcon />, link: "#" } // 세션 1
     : session === "2"
     ? { text: "경영관리", icon: <ManageAccountsIcon />, link: "/salary" } // 세션 2
     : null,

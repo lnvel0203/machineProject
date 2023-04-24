@@ -1,37 +1,56 @@
-.join h4 {
-  font-family: "Segoe UI", bold;
-  font-size: 35px;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
+.join {
+  display: inline-block;
+  justify-content: center;
+  background: #ffffff;
+  margin-left: 19%;
+  text-align: center;
+  color: black;
+  width: 1000px;
+  height: 1100px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border-radius: 22px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .joinForm {
-  display: inline-block;
-  align-items: center;
   height: 270px;
   width: 350px;
   margin-bottom: 170px;
+  margin-left: 35px;
 }
 
-.text_area {
+.join_text_area {
   align-content: center;
   border-radius: 22px;
   margin-bottom: 35px;
-  width: 100%;
+  width: 80%;
   height: 64px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.text_input {
+
+.join_text_area2 {
+  align-content: center;
+  border-radius: 22px;
+  margin-bottom: 35px;
+  margin-right:20px;
+  width: 160%;
+  height: 64px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+} 
+
+.join_text_input {
   margin-top: 1.2rem;
   font-family: "Montserrat regular";
   font-size: 20px;
   border: none;
-  width: 80%;
+  width: 97%;
 }
 
-.btn {
-  margin-top: 28px;
+.join_btn {
+  margin-top: -5px;
+  margin-left: 350px;
   width: 165px;
   height: 60px;
   border-radius: 30px;
@@ -45,14 +64,6 @@
   cursor: pointer;
 }
 
-.join {
-  color: black;
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  margin-left: 37%;
-  text-align: center;
-}
 
 .link {
   color: #0e4579;
@@ -63,12 +74,11 @@
   text-decoration: none;
 }
 
-.join {
-  display: inline-block;
-  background: #ffffff;
-  width: 600px;
-  height: 900px;
-  margin-top: 5%;
-  border-radius: 22px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+.join_Chk{
+  margin-right: 50px;
+  text-align: left;
+  width: 400px;
+  height: 100px;
 }
